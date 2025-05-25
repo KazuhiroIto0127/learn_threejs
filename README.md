@@ -1,46 +1,108 @@
 # Three.js Cube Project
 
-This project demonstrates how to create a simple 3D cube using Three.js. It serves as a basic introduction to setting up a Three.js scene, camera, and renderer.
+Three.jsを使用してインタラクティブなキューブを表示するプロジェクトです。
 
-## Project Structure
+## 機能
+
+- 🎮 マウス操作でキューブを回転
+- ✨ 自動回転アニメーション
+- 📱 レスポンシブデザイン
+- 🌟 美しいライティング効果
+
+## デモ
+
+[GitHub Pages でライブデモを見る](https://yourusername.github.io/threejs-cube-project/)
+
+## ローカル開発
+
+### 必要な環境
+
+- Node.js (v18以上)
+- npm
+
+### セットアップ
+
+1. リポジトリをクローン
+```bash
+git clone https://github.com/yourusername/threejs-cube-project.git
+cd threejs-cube-project
+```
+
+2. 依存関係をインストール
+```bash
+npm install
+```
+
+3. 開発サーバーを起動
+```bash
+npm run dev
+```
+
+ブラウザで `http://localhost:3000` を開いてください。
+
+### ビルド
+
+本番用にビルドするには：
+```bash
+npm run build
+```
+
+### プレビュー
+
+ビルド後のファイルをローカルでプレビュー：
+```bash
+npm run preview
+```
+
+### GitHub Pagesにデプロイ
+
+```bash
+npm run deploy
+```
+
+## 技術スタック
+
+- **Three.js** - 3Dグラフィックスライブラリ
+- **Vite** - 高速ビルドツール
+- **ES Modules** - モダンJavaScript
+
+## ファイル構成
 
 ```
-threejs-cube-project
-├── src
-│   ├── index.js        # Entry point of the application
-│   └── cube.js         # Contains the function to create a cube
-├── package.json        # npm configuration file
-├── webpack.config.js   # Webpack configuration file
-└── README.md           # Project documentation
+threejs-cube-project/
+├── src/
+│   ├── index.js      # メインアプリケーション
+│   └── cube.js       # キューブ作成ロジック
+├── dist/             # ビルド出力
+├── index.html        # HTMLテンプレート
+├── vite.config.js    # Vite設定
+└── package.json      # プロジェクト設定
 ```
 
-## Setup Instructions
+## 操作方法
 
-1. **Clone the repository:**
-   ```
-   git clone <repository-url>
-   cd threejs-cube-project
-   ```
+- **マウス移動**: キューブを回転
+- **自動回転**: 常に少しずつ回転し続けます
 
-2. **Install dependencies:**
-   ```
-   npm install
-   ```
+## カスタマイズ
 
-3. **Build the project:**
-   ```
-   npm run build
-   ```
+`src/cube.js` でキューブの色やマテリアルを変更できます：
 
-4. **Start the development server:**
-   ```
-   npm start
-   ```
+```javascript
+const material = new THREE.MeshPhongMaterial({ 
+    color: 0x00ff88,  // 色を変更
+    shininess: 100,   // 光沢を調整
+    specular: 0x222222
+});
+```
 
-## Usage
+## Viteの利点
 
-After starting the development server, open your browser and navigate to `http://localhost:3000` (or the specified port) to view the 3D cube rendered on the screen.
+- ⚡ 高速な開発サーバー
+- 🔥 ホットモジュールリプレースメント
+- 📦 最適化されたビルド
+- 🛠️ 設定不要でES Modulesサポート
 
-## License
+## ライセンス
 
-This project is licensed under the MIT License.
+ISC
