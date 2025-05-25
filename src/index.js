@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 // シーン、カメラ、レンダラーの設定
 const scene = new THREE.Scene();
@@ -52,20 +53,14 @@ loader.load(
 
 camera.position.z = 5;
 
-// マウス操作用の変数
-let mouseX = 0;
-let mouseY = 0;
-let targetRotationX = 0;
-let targetRotationY = 0;
-
-// マウスイベントリスナー
-document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX - window.innerWidth / 2) / window.innerWidth;
-    mouseY = (event.clientY - window.innerHeight / 2) / window.innerHeight;
-
-    targetRotationX = mouseY * Math.PI;
-    targetRotationY = mouseX * Math.PI;
-});
+// OrbitControlsの設定
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // スムーズな動きのためのダンピング
+controls.dampingFactor = 0.05;
+controls.screenSpacePanning = false;
+controls.minDistance = 2; // カメラの最小距離
+controls.maxDistance = 10; // カメラの最大距離
+controls.maxPolarAngle = Math.PI / 2; // 上下の回転制限
 
 // ウィンドウリサイズ対応
 window.addEventListener('resize', () => {
@@ -78,16 +73,8 @@ window.addEventListener('resize', () => {
 function animate() {
     requestAnimationFrame(animate);
 
-    // モデルが読み込まれている場合のみ回転を適用
-    if (model) {
-        // スムーズな回転
-        model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
-        model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
-
-        // 自動回転も少し追加
-        model.rotation.x += 0.005;
-        model.rotation.y += 0.005;
-    }
+    // OrbitControlsの更新
+    controls.update();
 
     renderer.render(scene, camera);
 }
