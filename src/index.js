@@ -3,12 +3,14 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // シーン、カメラ、レンダラーの設定
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight * 0.6), 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-renderer.setSize(window.innerWidth, window.innerHeight);
+// レンダラーのサイズを上半分に設定
+const threeContainer = document.getElementById('three-container');
+renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
 renderer.setClearColor(0x222222);
-document.body.appendChild(renderer.domElement);
+threeContainer.appendChild(renderer.domElement);
 
 // ライティングの追加
 const ambientLight = new THREE.AmbientLight(0x404040, 1.0);
@@ -33,11 +35,11 @@ loader.load(
     (gltf) => {
         model = gltf.scene;
         scene.add(model);
-        
+
         // モデルのサイズを調整（必要に応じて）
         model.scale.set(1, 1, 1);
         model.position.set(0, 0, 0);
-        
+
         console.log('GLBモデルが正常に読み込まれました');
     },
     (progress) => {
@@ -60,33 +62,33 @@ let targetRotationY = 0;
 document.addEventListener('mousemove', (event) => {
     mouseX = (event.clientX - window.innerWidth / 2) / window.innerWidth;
     mouseY = (event.clientY - window.innerHeight / 2) / window.innerHeight;
-    
+
     targetRotationX = mouseY * Math.PI;
     targetRotationY = mouseX * Math.PI;
 });
 
 // ウィンドウリサイズ対応
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / (window.innerHeight * 0.6);
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
 });
 
 // アニメーションループ
 function animate() {
     requestAnimationFrame(animate);
-    
+
     // モデルが読み込まれている場合のみ回転を適用
     if (model) {
         // スムーズな回転
         model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
         model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
-        
+
         // 自動回転も少し追加
         model.rotation.x += 0.005;
         model.rotation.y += 0.005;
     }
-    
+
     renderer.render(scene, camera);
 }
 
