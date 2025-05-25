@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createCube } from './cube';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // シーン、カメラ、レンダラーの設定
 const scene = new THREE.Scene();
@@ -18,9 +18,30 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
 directionalLight.position.set(1, 1, 1);
 scene.add(directionalLight);
 
-// キューブの作成と追加
-const cube = createCube();
-scene.add(cube);
+// GLBモデルを格納する変数
+let model = null;
+
+// GLTFローダーでGLBファイルを読み込み
+const loader = new GLTFLoader();
+loader.load(
+    './obake.glb',
+    (gltf) => {
+        model = gltf.scene;
+        scene.add(model);
+        
+        // モデルのサイズを調整（必要に応じて）
+        model.scale.set(1, 1, 1);
+        model.position.set(0, 0, 0);
+        
+        console.log('GLBモデルが正常に読み込まれました');
+    },
+    (progress) => {
+        console.log('読み込み進行状況:', (progress.loaded / progress.total * 100) + '%');
+    },
+    (error) => {
+        console.error('GLBファイルの読み込みエラー:', error);
+    }
+);
 
 camera.position.z = 5;
 
@@ -50,13 +71,16 @@ window.addEventListener('resize', () => {
 function animate() {
     requestAnimationFrame(animate);
     
-    // スムーズな回転
-    cube.rotation.x += (targetRotationX - cube.rotation.x) * 0.05;
-    cube.rotation.y += (targetRotationY - cube.rotation.y) * 0.05;
-    
-    // 自動回転も少し追加
-    cube.rotation.x += 0.005;
-    cube.rotation.y += 0.005;
+    // モデルが読み込まれている場合のみ回転を適用
+    if (model) {
+        // スムーズな回転
+        model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
+        model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
+        
+        // 自動回転も少し追加
+        model.rotation.x += 0.005;
+        model.rotation.y += 0.005;
+    }
     
     renderer.render(scene, camera);
 }
