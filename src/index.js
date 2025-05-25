@@ -11,12 +11,17 @@ renderer.setClearColor(0x222222);
 document.body.appendChild(renderer.domElement);
 
 // ライティングの追加
-const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+const ambientLight = new THREE.AmbientLight(0x404040, 1.0);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-directionalLight.position.set(1, 1, 1);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
+
+// 追加の指向性ライト（反対側から）
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.8);
+directionalLight2.position.set(-5, 3, -5);
+scene.add(directionalLight2);
 
 // GLBモデルを格納する変数
 let model = null;
