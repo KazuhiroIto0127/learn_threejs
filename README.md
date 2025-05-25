@@ -11,7 +11,7 @@ Three.jsを使用してインタラクティブなキューブを表示するプ
 
 ## デモ
 
-[GitHub Pages でライブデモを見る](https://yourusername.github.io/threejs-cube-project/)
+[GitHub Pages でライブデモを見る](https://kazuhiroito0127.github.io/learn_threejs/)
 
 ## ローカル開発
 
@@ -24,8 +24,8 @@ Three.jsを使用してインタラクティブなキューブを表示するプ
 
 1. リポジトリをクローン
 ```bash
-git clone https://github.com/yourusername/threejs-cube-project.git
-cd threejs-cube-project
+git clone https://github.com/yourusername/learn_threejs.git
+cd learn_threejs
 ```
 
 2. 依存関係をインストール
@@ -69,7 +69,7 @@ npm run deploy
 ## ファイル構成
 
 ```
-threejs-cube-project/
+learn_threejs/
 ├── src/
 │   ├── index.js      # メインアプリケーション
 │   └── cube.js       # キューブ作成ロジック
@@ -95,14 +95,3 @@ const material = new THREE.MeshPhongMaterial({
     specular: 0x222222
 });
 ```
-
-## Viteの利点
-
-- ⚡ 高速な開発サーバー
-- 🔥 ホットモジュールリプレースメント
-- 📦 最適化されたビルド
-- 🛠️ 設定不要でES Modulesサポート
-
-## ライセンス
-
-ISC
