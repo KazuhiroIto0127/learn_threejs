@@ -61,6 +61,7 @@ controls.screenSpacePanning = false;
 controls.minDistance = 2; // カメラの最小距離
 controls.maxDistance = 10; // カメラの最大距離
 controls.maxPolarAngle = Math.PI / 2; // 上下の回転制限
+controls.enableZoom = false; // マウスホイールでのズームを無効化してページスクロールを可能にする
 
 // ウィンドウリサイズ対応
 window.addEventListener('resize', () => {
