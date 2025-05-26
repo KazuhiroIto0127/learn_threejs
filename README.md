@@ -1,13 +1,14 @@
-# Three.js Cube Project
+# おばけ3Dビューアー
 
-Three.jsを使用してインタラクティブなキューブを表示するプロジェクトです。
+Three.jsとTailwind CSS v4を使用したインタラクティブな3Dおばけビューアーです。
 
 ## 機能
 
-- 🎮 マウス操作でキューブを回転
-- ✨ 自動回転アニメーション
+- 👻 リアルな3Dおばけモデル
+- 🎮 マウス操作で自由に回転
+- ✨ 美しいライティング効果
 - 📱 レスポンシブデザイン
-- 🌟 美しいライティング効果
+- 💨 Tailwind CSS v4で構築されたモダンUI
 
 ## デモ
 
@@ -63,6 +64,7 @@ npm run deploy
 ## 技術スタック
 
 - **Three.js** - 3Dグラフィックスライブラリ
+- **Tailwind CSS v4** - 最新のユーティリティファーストCSSフレームワーク
 - **Vite** - 高速ビルドツール
 - **ES Modules** - モダンJavaScript
 
@@ -72,7 +74,7 @@ npm run deploy
 learn_threejs/
 ├── src/
 │   ├── index.js      # メインアプリケーション
-│   └── cube.js       # キューブ作成ロジック
+│   └── styles.css    # Tailwind CSS v4スタイル
 ├── dist/             # ビルド出力
 ├── index.html        # HTMLテンプレート
 ├── vite.config.js    # Vite設定
@@ -81,17 +83,27 @@ learn_threejs/
 
 ## 操作方法
 
-- **マウス移動**: キューブを回転
-- **自動回転**: 常に少しずつ回転し続けます
+- **マウス移動**: おばけモデルを回転
+- **ホバー効果**: リストアイテムにマウスオーバーで視覚的フィードバック
+
+## Tailwind CSS v4について
+
+このプロジェクトではTailwind CSS v4を使用しています：
+
+- **新しいCSS設定**: `@import "tailwindcss"`で簡単にインポート
+- **高速ビルド**: 新しいエンジンによる最適化
+- **モダンCSS機能**: カスケードレイヤー、カスタムプロパティなどを活用
+- **Viteプラグイン**: `@tailwindcss/vite`でシームレスな統合
 
 ## カスタマイズ
 
-`src/cube.js` でキューブの色やマテリアルを変更できます：
+スタイルを変更する場合は`src/styles.css`を編集してください：
 
-```javascript
-const material = new THREE.MeshPhongMaterial({ 
-    color: 0x00ff88,  // 色を変更
-    shininess: 100,   // 光沢を調整
-    specular: 0x222222
-});
+```css
+@import "tailwindcss";
+
+/* カスタムスタイル */
+.text-shadow-md {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
 ```

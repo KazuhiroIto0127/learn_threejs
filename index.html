@@ -4,152 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>おばけ3Dビューアー</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans JP', Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .three-container {
-            height: 60vh;
-            position: relative;
-            border-bottom: 3px solid #fff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-        }
-
-        .description-container {
-            min-height: 100vh;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        .title {
-            font-size: 2.5em;
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: #34495e;
-            text-align: center;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        .content-section {
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            font-size: 1.4em;
-            color: #e74c3c;
-            margin-bottom: 10px;
-            border-left: 4px solid #e74c3c;
-            padding-left: 10px;
-        }
-
-        .description-text {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #2c3e50;
-            text-align: justify;
-        }
-
-        .features-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .features-list li {
-            background: rgba(52, 152, 219, 0.1);
-            margin: 8px 0;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-            transition: all 0.3s ease;
-        }
-
-        .features-list li:hover {
-            background: rgba(52, 152, 219, 0.2);
-            transform: translateX(5px);
-        }
-
-        .controls-info {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            z-index: 100;
-            font-size: 14px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px;
-            border-radius: 5px;
-            backdrop-filter: blur(5px);
-        }
-
-        canvas {
-            display: block;
-        }
-
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="/src/styles.css">
 </head>
-<body>
-    <div class="container">
-        <div class="three-container" id="three-container">
-            <div class="controls-info">
+<body class="m-0 p-0 box-border font-sans bg-gradient-to-br from-blue-800 to-blue-600 min-h-screen">
+    <div class="flex flex-col min-h-screen">
+        <div id="three-container" class="h-[60vh] relative border-b-4 border-white shadow-lg">
+            <div class="absolute top-2.5 left-2.5 text-white z-[100] text-sm bg-black/70 p-2.5 rounded backdrop-blur-sm">
                 👻 おばけ3Dモデル<br>
                 🖱️ マウスで回転できます
             </div>
         </div>
 
-        <div class="description-container">
-            <h1 class="title">👻 おばけについて</h1>
-            <p class="subtitle">〜 神秘的な存在の秘密に迫る 〜</p>
+        <div class="min-h-screen p-8 bg-white/95 backdrop-blur-xl">
+            <h1 class="text-4xl text-slate-800 text-center mb-5 text-shadow-md">👻 おばけについて</h1>
+            <p class="text-xl text-slate-700 text-center mb-8 italic">〜 神秘的な存在の秘密に迫る 〜</p>
 
-            <div class="content-section">
-                <h2 class="section-title">🌟 おばけとは</h2>
-                <p class="description-text">
+            <div class="mb-6">
+                <h2 class="text-2xl text-red-500 mb-2.5 border-l-4 border-red-500 pl-2.5">🌟 おばけとは</h2>
+                <p class="text-lg leading-relaxed text-slate-800 text-justify">
                     おばけは日本の伝統的な民間信仰において、死者の霊や超自然的な存在として語り継がれてきました。
                     白い布を被った姿で描かれることが多く、夜中に現れて人を驚かせたり、時には助けてくれたりする不思議な存在です。
                     現代では恐怖の対象というよりも、どこか愛らしいキャラクターとして親しまれています。
                 </p>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">✨ おばけの特徴</h2>
-                <ul class="features-list">
-                    <li><span class="emoji">👤</span>半透明の白い姿で現れる</li>
-                    <li><span class="emoji">🌙</span>主に夜間に活動する</li>
-                    <li><span class="emoji">🏠</span>古い建物や神聖な場所に住む</li>
-                    <li><span class="emoji">💨</span>ふわふわと宙に浮いて移動</li>
-                    <li><span class="emoji">😱</span>「うらめしや〜」という声で鳴く</li>
+            <div class="mb-6">
+                <h2 class="text-2xl text-red-500 mb-2.5 border-l-4 border-red-500 pl-2.5">✨ おばけの特徴</h2>
+                <ul class="list-none p-0">
+                    <li class="bg-blue-500/10 my-2 py-3 px-4 rounded-lg border-l-4 border-blue-500 transition-all duration-300 hover:bg-blue-500/20 hover:translate-x-1">
+                        <span class="text-xl mr-2">👤</span>半透明の白い姿で現れる
+                    </li>
+                    <li class="bg-blue-500/10 my-2 py-3 px-4 rounded-lg border-l-4 border-blue-500 transition-all duration-300 hover:bg-blue-500/20 hover:translate-x-1">
+                        <span class="text-xl mr-2">🌙</span>主に夜間に活動する
+                    </li>
+                    <li class="bg-blue-500/10 my-2 py-3 px-4 rounded-lg border-l-4 border-blue-500 transition-all duration-300 hover:bg-blue-500/20 hover:translate-x-1">
+                        <span class="text-xl mr-2">🏠</span>古い建物や神聖な場所に住む
+                    </li>
+                    <li class="bg-blue-500/10 my-2 py-3 px-4 rounded-lg border-l-4 border-blue-500 transition-all duration-300 hover:bg-blue-500/20 hover:translate-x-1">
+                        <span class="text-xl mr-2">💨</span>ふわふわと宙に浮いて移動
+                    </li>
+                    <li class="bg-blue-500/10 my-2 py-3 px-4 rounded-lg border-l-4 border-blue-500 transition-all duration-300 hover:bg-blue-500/20 hover:translate-x-1">
+                        <span class="text-xl mr-2">😱</span>「うらめしや〜」という声で鳴く
+                    </li>
                 </ul>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">🎭 文化的意義</h2>
-                <p class="description-text">
+            <div class="mb-6">
+                <h2 class="text-2xl text-red-500 mb-2.5 border-l-4 border-red-500 pl-2.5">🎭 文化的意義</h2>
+                <p class="text-lg leading-relaxed text-slate-800 text-justify">
                     おばけは日本文化において重要な役割を果たしています。昔話や怪談を通じて道徳観念を教えたり、
                     季節の行事（お盆など）で先祖を偲ぶ象徴として用いられたりしています。
                     また、現代のポップカルチャーでも、アニメやゲームのキャラクターとして愛され続けています。

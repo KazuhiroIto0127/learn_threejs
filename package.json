@@ -1,7 +1,7 @@
 {
   "name": "threejs-cube-project",
   "version": "1.0.0",
-  "description": "A simple project to create a cube using Three.js",
+  "description": "A Three.js 3D ghost viewer with Tailwind CSS v4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +14,9 @@
   },
   "devDependencies": {
     "vite": "^5.0.0",
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.0.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0"
   },
   "author": "",
   "license": "ISC"

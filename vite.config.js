@@ -1,7 +1,11 @@
 import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   base: '/learn_threejs/',
+  plugins: [
+    tailwindcss(),
+  ],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -11,4 +15,4 @@ export default defineConfig({
     port: 3000,
     open: true
   }
-}) 
+})
