@@ -130,20 +130,6 @@ const rimLight = new THREE.DirectionalLight(0xffaa88, 1.2);
 rimLight.position.set(0, 5, -10);
 scene.add(rimLight);
 
-// 反射用の床面を作成
-const floorGeometry = new THREE.PlaneGeometry(20, 20);
-const floorMaterial = new THREE.MeshStandardMaterial({
-    color: 0x222222,
-    metalness: 0.8,
-    roughness: 0.1,
-    envMapIntensity: 1.0
-});
-const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-floor.rotation.x = -Math.PI / 2;
-floor.position.y = -2;
-floor.receiveShadow = true;
-scene.add(floor);
-
 // パーティクル効果の追加
 const createParticles = () => {
     const particleCount = 100;
