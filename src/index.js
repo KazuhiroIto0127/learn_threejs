@@ -51,7 +51,13 @@ loader.load(
     }
 );
 
-camera.position.z = 5;
+// 初期カメラアニメーション用の変数
+let isInitialAnimation = true;
+let animationStartTime = Date.now();
+const animationDuration = 4000; // 4秒で1周
+const cameraRadius = 5;
+
+camera.position.z = cameraRadius;
 
 // OrbitControlsの設定
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -62,6 +68,9 @@ controls.minDistance = 2; // カメラの最小距離
 controls.maxDistance = 10; // カメラの最大距離
 controls.maxPolarAngle = Math.PI / 2; // 上下の回転制限
 controls.enableZoom = false; // マウスホイールでのズームを無効化してページスクロールを可能にする
+
+// 初期アニメーション中はコントロールを無効化
+controls.enabled = false;
 
 // ウィンドウリサイズ対応
 window.addEventListener('resize', () => {
@@ -74,8 +83,29 @@ window.addEventListener('resize', () => {
 function animate() {
     requestAnimationFrame(animate);
 
-    // OrbitControlsの更新
-    controls.update();
+    // 初期カメラアニメーション
+    if (isInitialAnimation) {
+        const elapsed = Date.now() - animationStartTime;
+        const progress = elapsed / animationDuration;
+
+        if (progress < 1) {
+            // カメラを円周上で回転させる
+            const angle = progress * Math.PI * 2; // 1周 (2π)
+            camera.position.x = cameraRadius * Math.sin(angle);
+            camera.position.z = cameraRadius * Math.cos(angle);
+            camera.position.y = 0;
+
+            // 常に中央を向く
+            camera.lookAt(0, 0, 0);
+        } else {
+            // アニメーション完了、OrbitControlsを有効化
+            isInitialAnimation = false;
+            controls.enabled = true;
+        }
+    } else {
+        // OrbitControlsの更新
+        controls.update();
+    }
 
     renderer.render(scene, camera);
 }
