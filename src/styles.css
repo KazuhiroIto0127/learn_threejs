@@ -11,3 +11,10 @@ canvas {
     max-width: 100%;
     border-radius: 10px;
 }
+
+/* OBAKE テキストアニメーション */
+#obake-text {
+    font-family: 'Arial Black', Arial, sans-serif;
+    letter-spacing: 0.2em;
+    background-size: 200% 200%;
+}
